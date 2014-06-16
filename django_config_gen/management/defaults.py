@@ -19,12 +19,11 @@ CONTEXT_PROCESSORS = []
 
 #Error is thrown when running "./manage.py syncdb" for the first time and this app is installed.
 try:
-	HOST = Site.objects.get_current().domain.split(':')[0]
+    HOST = Site.objects.get_current().domain.split(':')[0]
 except:
-	#try/except to avoid "django.db.transaction.TransactionManagementError: This code isn't under transaction management"
-	try:
-		transaction.rollback()
-	except:
-		pass
-	HOST = 'localhost'
-
+    #try/except to avoid "django.db.transaction.TransactionManagementError: This code isn't under transaction management"
+    try:
+        transaction.rollback()
+    except:
+        pass
+    HOST = 'localhost'
