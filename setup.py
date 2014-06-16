@@ -6,7 +6,6 @@ import django_config_gen
 
 
 package_name = 'django_config_gen'
-test_package_name = '%s_test_project' % package_name
 
 
 setup(name='django-config-gen',
@@ -36,7 +35,6 @@ setup(name='django-config-gen',
       license='BSD',
       packages=[
           'django_config_gen',
-          'django_config_gen_test_project',
       ],
       package_data={'django_config_gen': ['management/commands/example_templates/*']},
       include_package_data=True,
