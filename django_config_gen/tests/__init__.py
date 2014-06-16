@@ -1,17 +1,19 @@
-# -*- coding: utf-8 -*-
-#Copyright (C) 2010, 2011 Seán Hayes
+# coding: utf-8
 #
-#Licensed under a BSD 3-Clause License. See LICENSE file.
+# Copyright (C) 2010-2014 Seán Hayes
+# Copyright (C) 2011-14 Mikhail Porokhovnichenko
+#
+# Licensed under a BSD 3-Clause License. See LICENSE file.
 
+from django.conf import settings
+from django.core.management import call_command
+from django import test
 import os
 import shutil
 import tempfile
-from django.conf import settings
-from django.core.management import call_command
-from django.test import TestCase
 
 
-class CallCommandTestCase(TestCase):
+class CallCommandTestCase(test.TestCase):
     def setUp(self):
         self.tmp_files = []
 
@@ -42,19 +44,19 @@ This is some text with unicode!
 -Seán Hayes
 """.encode('utf-8')
 
-        fo = open(test_file_template_path, 'w')
-        fo.write(config_template)
-        fo.close()
+ 
+        with open(test_file_template_path, 'w') as fo:
+            fo.write(config_template)
 
         self.assertFalse(os.path.exists(test_file_generated_path))
 
         call_command('config_gen')
 
-        fi = open(test_file_generated_path, 'r')
-        generated_text = fi.read()
-        fi.close()
+        with open(test_file_generated_path, 'r') as fi:
+            generated_text = fi.read()
 
         self.assertTrue(os.path.exists(test_file_generated_path))
+
         #make sure the unicode didn't get silently mangled
         self.assertEqual(config_template, generated_text)
 

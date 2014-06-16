@@ -21,9 +21,7 @@ patch_settings()
 
 
 TEMPLATES_DIR = settings.CONFIG_GEN_TEMPLATES_DIR
-#logger.debug(TEMPLATES_DIR)
 GENERATED_DIR = settings.CONFIG_GEN_GENERATED_DIR
-#logger.debug(GENERATED_DIR)
 CONTEXT_PROCESSORS = settings.CONFIG_GEN_CONTEXT_PROCESSORS
 
 
@@ -75,14 +73,11 @@ class Command(NoArgsCommand):
         self.create_nodes(TEMPLATES_DIR)
 
     def render_template(self, source, target):
-        fi = open(source, 'r')
-        t = Template(fi.read())
-        fi.close()
-
-        fo = open(target, 'w')
-        generated_text = t.render(self.ctx).encode('utf-8')
-        fo.write(generated_text)
-        fo.close()
+        with open(source, 'r') as fi:
+            t = Template(fi.read())
+        with open(target, 'w') as fo:
+            generated_text = t.render(self.ctx).encode('utf-8')
+            fo.write(generated_text)
 
     def create_nodes(self, path):
         for root, dirs, files in os.walk(path):

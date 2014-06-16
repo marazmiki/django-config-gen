@@ -1,13 +1,31 @@
-= Django Configuration Generator =
+django-config-gen
+=================
+
+
+.. image:: https://badge.fury.io/py/django-config-gen.png
+    :target: http://badge.fury.io/py/django-config-gen
+    
+.. image:: https://travis-ci.org/marazmiki/django-config-gen.png?branch=master
+        :target: https://travis-ci.org/marazmiki/django-config-gen
+
+.. image:: https://coveralls.io/repos/marazmiki/django-config-gen/badge.png?branch=master
+  :target: https://coveralls.io/r/marazmiki/django-config-gen?branch=master
+
+.. image:: https://pypip.in/d/django-config-gen/badge.png
+        :target: https://pypi.python.org/pypi/django-config-gen
+
 
 Generates configuration files for Apache, Nginx, etc. using values in settings.py and the Django template system. You can write your own templates for whatever text based config file you need.
 
-== Install ==
+Install
+-------
+
 1. Install package via your preferred Python package manager (pip, setuptools, etc.).
 
 2. Add 'django_config_gen' to your INSTALLED_APPS.
 
-== Usage ==
+Usage
+-----
 
 Run './manage.py config_gen' on the command line in your project directory.
 
