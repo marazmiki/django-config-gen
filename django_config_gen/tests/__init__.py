@@ -61,38 +61,37 @@ This is some text with unicode!
     def test_copies_sub_folder_contents(self):
         "Make sure unicode is supported in file contents."
         os.makedirs(os.path.join(settings.CONFIG_GEN_TEMPLATES_DIR, 'foo', 'bar'))
-        
+
         test_file_name = 'test_file'
         test_file_template_path = os.path.join(settings.CONFIG_GEN_TEMPLATES_DIR, 'foo', 'bar', test_file_name)
         test_file_generated_path = os.path.join(settings.CONFIG_GEN_GENERATED_DIR, 'foo', 'bar', test_file_name)
         self.tmp_files.append(test_file_template_path)
         self.tmp_files.append(test_file_generated_path)
-        
+
         if not os.path.exists(settings.CONFIG_GEN_TEMPLATES_DIR):
             os.makedirs(settings.CONFIG_GEN_TEMPLATES_DIR)
-        
+
         config_template = u"""
 This is some text with unicode!
 -Seán Hayes
 """.encode('utf-8')
-        
+
         fo = open(test_file_template_path, 'w')
         fo.write(config_template)
         fo.close()
-        
+
         self.assertTrue(os.path.exists(test_file_template_path))
         self.assertFalse(os.path.exists(test_file_generated_path))
-        
+
         call_command('config_gen')
-        
+
         fi = open(test_file_generated_path, 'r')
         generated_text = fi.read()
         fi.close()
-        
+
         self.assertTrue(os.path.exists(test_file_generated_path))
         #make sure the unicode didn't get silently mangled
         self.assertEqual(config_template, generated_text)
-        
 
     def tearDown(self):
         for tmp_file in self.tmp_files:
