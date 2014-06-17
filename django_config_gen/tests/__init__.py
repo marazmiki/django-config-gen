@@ -71,11 +71,10 @@ class Test(test.TestCase):
         self.assertGeneratedFileExists('empty')
         self.assertGeneratedFileExists('full/empty_sub')
 
-    def test_file_placeholders(self):        
+    def test_file_placeholders(self):
         with mock.patch('django_config_gen.utils') as p, \
             mock.patch('django.conf.settings') as p2:
-#           p2.placeho
-            self.settings(placeholder='Django'):
+            #self.settings(placeholder='Django')
             p.FILE_TEMPLATES = ['placeholder']
             call_command('config_gen')
             self.assertGeneratedFileExists('full/Django')
@@ -85,5 +84,5 @@ class Test(test.TestCase):
 
 
 class TestPrintFunctionCommand(test.TestCase):
-    def _test_1(self):
+    def test_1(self):
         call_command('print_settings')

@@ -39,7 +39,7 @@ env:
 install:
   - pip install -q Django==$DJANGO
   - pip install -q flake8
-  - pip install -q python-coveralls coverage
+  - pip install -q python-coveralls coverage mock
   - python setup.py install
 
 before_script:
@@ -50,4 +50,3 @@ after_success:
 
 script:
   - coverage run --include=django_config_gen/* ./tests.py
-

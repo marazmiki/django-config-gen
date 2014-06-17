@@ -30,4 +30,5 @@ class Command(NoArgsCommand):
         for h in l.handlers:
             l.removeHandler(h)
         l.addHandler(NullHandler())
+        print(print_settings())
         print(json.dumps(print_settings(), indent=4, sort_keys=True))
