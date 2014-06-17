@@ -1,13 +1,15 @@
-# -*- coding: utf-8 -*-
-#Copyright (C) 2010, 2011 Seán Hayes
+# coding: utf-8
+# Copyright (C) 2010, 2011 Seán Hayes
 #
 #Licensed under a BSD 3-Clause License. See LICENSE file.
 
+from __future__ import unicode_literals
+from __future__ import print_function
+from __future__ import absolute_import
+from __future__ import division
 from django.core.management.base import NoArgsCommand
-from django.conf import settings
-from .. import patch_settings
+from django_config_gen.utils import print_settings
 import json
-import copy
 import logging
 
 
@@ -19,9 +21,6 @@ class NullHandler(logging.Handler):
         pass
 
 
-patch_settings()
-
-
 class Command(NoArgsCommand):
     help = 'Prints out settings serialized as JSON.'
 
@@ -31,17 +30,4 @@ class Command(NoArgsCommand):
         for h in l.handlers:
             l.removeHandler(h)
         l.addHandler(NullHandler())
-
-        d = {}
-        s_d = settings._wrapped.__dict__
-        for key in settings._wrapped.__dict__:
-            val = s_d[key]
-            logger.debug('%s: %s' % (key, val))
-            try:
-                #if settings has something like "import django.conf.global_settings as DEFAULT_SETTINGS"
-                #in it, then json encoding will throw and error. Copying makes
-                #sure modules don't get included.
-                d[key] = copy.copy(val)
-            except Exception as e:
-                logger.error(e)
-        print json.dumps(d, indent=4, sort_keys=True)
+        print(json.dumps(print_settings(), indent=4, sort_keys=True))

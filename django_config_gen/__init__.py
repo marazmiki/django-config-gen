@@ -1,6 +1,8 @@
 # coding: utf-8
 # Copyright (C) 2010-2014 Seán Hayes
+# Copyright (C) 2011-14 Mikhail Porokhovnichenko
 # Licensed under a BSD 3-Clause License. See LICENSE file.
+
 
 VERSION = (0, 2, 0, 'alpha', 1)
 
