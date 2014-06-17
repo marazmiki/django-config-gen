@@ -27,7 +27,7 @@ class Generator(object):
 
     def generate(self):
         context = self.get_context()
-#        print('file templates=', settings.FILE_TEMPLATES)
+        print('file templates=', settings.FILE_TEMPLATES)
         for root, dirs, files in os.walk(self.source_dir):
             for dirname in dirs:
 #                print(dirname)
@@ -42,10 +42,11 @@ class Generator(object):
                     os.makedirs(target)
 
             for filename in files:
-                if filename in settings.FILE_TEMPLATES:
-#                    print("!!!!!!!!!!")
+                if filename in settings.FILE_TEMPLATES:                    
+                    print("!!!!!!!!!!")
+                    print("context =%s" % context)
                     filename = context.get(filename) or filename
-#                    print("FILENAME =%s" % filename)
+                    print("FILENAME =%s" % filename)
                 source = os.path.join(root, filename)
                 target = source.replace(self.source_dir, self.target_dir)
 
@@ -59,7 +60,7 @@ class Generator(object):
 
     def get_context(self):
         keys = {}
-        keys.update(**djsettings.__dict__)
+        keys.update(**djsettings._wrapped.__dict__)
         keys.pop('_deleted', None)
         return keys
 
