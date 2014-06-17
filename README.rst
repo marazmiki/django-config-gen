@@ -4,15 +4,15 @@ django-config-gen
 
 .. image:: https://badge.fury.io/py/django-config-gen.png
     :target: http://badge.fury.io/py/django-config-gen
-    
+
 .. image:: https://travis-ci.org/marazmiki/django-config-gen.png?branch=master
-        :target: https://travis-ci.org/marazmiki/django-config-gen
+    :target: https://travis-ci.org/marazmiki/django-config-gen
 
 .. image:: https://coveralls.io/repos/marazmiki/django-config-gen/badge.png?branch=master
-  :target: https://coveralls.io/r/marazmiki/django-config-gen?branch=master
+    :target: https://coveralls.io/r/marazmiki/django-config-gen?branch=master
 
 .. image:: https://pypip.in/d/django-config-gen/badge.png
-        :target: https://pypi.python.org/pypi/django-config-gen
+    :target: https://pypi.python.org/pypi/django-config-gen
 
 
 Generates configuration files for Apache, Nginx, etc. using values in settings.py and the Django template system. You can write your own templates for whatever text based config file you need.

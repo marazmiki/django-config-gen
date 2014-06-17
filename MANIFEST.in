@@ -1,4 +1,9 @@
-include django_config_gen/management/commands/example_templates/*
+recursive-include django_config_gen/tests *
+include .gitignore
+include .travis.yml
 include AUTHORS
 include LICENSE
-include README
+include MANIFEST.in
+include Makefile
+include README.rst
+include tests.py
