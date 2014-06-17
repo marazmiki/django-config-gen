@@ -1,4 +1,5 @@
 clean:
+	rm -f .coverage
 	rm -rf django_config_gen.egg-info
 	rm -rf htmlcov
 	find . -name "*.pyc" -exec rm -rf {} \;
