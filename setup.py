@@ -39,4 +39,5 @@ setup(name='django-config-gen',
       package_data={'django_config_gen': ['management/commands/example_templates/*']},
       include_package_data=True,
       install_requires=['Django>=1.2'],
+      tests_require=['mock'],
       test_suite='tests.main')
