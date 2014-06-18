@@ -10,6 +10,6 @@
 *~
 dist/
 htmlcov/
-.coverage/
+.coverage
 .coverage_report/
 *.egg-info/

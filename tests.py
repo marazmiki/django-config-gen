@@ -15,6 +15,10 @@ settings.configure(DEBUG=True,
                                    'django.contrib.contenttypes',
                                    'django.contrib.sessions',
                                    'django_config_gen',),
+                   LANGUAGES=(
+                       ('ru', 'Russian'),
+                       ('en', 'English'),
+                   ),
                    DATABASES={
                        'default': {
                            'ENGINE': 'django.db.backends.sqlite3',

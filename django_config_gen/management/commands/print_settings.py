@@ -1,7 +1,10 @@
 # coding: utf-8
-# Copyright (C) 2010, 2011 Seán Hayes
 #
-#Licensed under a BSD 3-Clause License. See LICENSE file.
+# Copyright (C) 2010-2014 Seán Hayes
+# Copyright (C) 2011-2014 Mikhail Porokhovnichenko
+#
+# Licensed under a BSD 3-Clause License. See LICENSE file.
+#
 
 from __future__ import unicode_literals
 from __future__ import print_function
@@ -25,10 +28,13 @@ class Command(NoArgsCommand):
     help = 'Prints out settings serialized as JSON.'
 
     def handle_noargs(self, **options):
-        #remove logging statements from output
+        self.devnull()
+        self.stdout.write(json.dumps(print_settings(),
+                                     indent=4,
+                                     sort_keys=True), ending='\n')
+
+    def devnull(self):
         l = logging.getLogger('')
         for h in l.handlers:
             l.removeHandler(h)
         l.addHandler(NullHandler())
-        print(print_settings())
-        print(json.dumps(print_settings(), indent=4, sort_keys=True))
